@@ -10,10 +10,10 @@ def browser_init(context):
     """
     :param context: Behave context
     """
-    context.driver = webdriver.Firefox(service=FirefoxService(GeckoDriverManager().install()))
+    #context.driver = webdriver.Firefox(service=FirefoxService(GeckoDriverManager().install()))
 
-    #service = Service(executable_path='/Users/ahdoy/Desktop/QA/python-selenium-automation/')
-    #context.driver = webdriver.Chrome(service=service)
+    service = Service(executable_path='/Users/ahoy/Desktop/QA/python-selenium-automation/')
+    context.driver = webdriver.Chrome(service=service)
 
     context.driver.maximize_window()
 
