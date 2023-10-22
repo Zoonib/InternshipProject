@@ -2,15 +2,18 @@ from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.support.wait import WebDriverWait
 from app.application import Application
+from selenium.webdriver.firefox.service import Service as FirefoxService
+from webdriver_manager.firefox import GeckoDriverManager
 
 
 def browser_init(context):
     """
     :param context: Behave context
     """
-    service = Service(executable_path='/Users/ahdoy/Desktop/QA/python-selenium-automation/chromedriver')
+    context.driver = webdriver.Firefox(service=FirefoxService(GeckoDriverManager().install()))
 
-    context.driver = webdriver.Chrome(service=service)
+    #service = Service(executable_path='/Users/ahdoy/Desktop/QA/python-selenium-automation/')
+    #context.driver = webdriver.Chrome(service=service)
 
     context.driver.maximize_window()
 
