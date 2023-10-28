@@ -4,9 +4,11 @@ from pages.base_page import Page
 
 class FilterResultPage(Page):
     FILTER_RESULT = (By.CSS_SELECTOR, '.filter-text')
-    FILTER_FIRST = (By.CSS_SELECTOR, '.input-lield-text.w-input#field-5')
+    #FILTER_FIRST = (By.CSS_SELECTOR, '.input-lield-text.w-input#field-5')
+    FILTER_FIRST = (By.CSS_SELECTOR, 'input.input-lield-text[wized="unitPriceFromFilter"]')
     First = ('1200000')
-    FILTER_SEC = (By.CSS_SELECTOR, '.input-lield-text.w-input#field-5')
+    #FILTER_SEC = (By.CSS_SELECTOR, '.input-lield-text.w-input#field-5')
+    FILTER_SEC = (By.CSS_SELECTOR, 'input.input-lield-text[wized="unitPriceToFilter"]')
     Sec = ('2000000')
 
 
@@ -23,7 +25,9 @@ class FilterResultPage(Page):
 
     def verify_info(self):
         actual_name = self.find_element(*self.FILTER_FIRST).get_attribute('value')
-        assert actual_name in self.FILTER_FIRST, f'Expected name: {self.First}, Actual name: {actual_name}'
+        assert actual_name == self.First, f'Expected name: {self.First}, Actual name: {actual_name}'
+        #actual_name = self.find_element(*self.FILTER_FIRST).get_attribute('value')
+        #assert actual_name in self.FILTER_FIRST, f'Expected name: {self.First}, Actual name: {actual_name}'
 
     #def filter_products_by_price_range(self, expected_text):
        # actual_text = self.find_element(*self.FILTER_RESULT).text
