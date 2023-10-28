@@ -1,16 +1,14 @@
 from pages.main_page import MainPage
-# from pages.header import Header
-# from pages.search_result_page import SearchResultPage
-# from pages.sign_in_page import SignInPage
-# from pages.shopping_cart import ShoppingCart
+from pages.log_in_page import LogInPage
+from pages.page_opens import PageOpens
+from pages.filter_products import FilterResultPage
+
 
 
 class Application:
 
     def __init__(self, driver):
         self.main_page = MainPage(driver)
-        self.log_in_page= logInpage(driver)
-        self.click_left_side_menu = clickleftsidemenu(driver)
-        self.verify_right_page_opens = verifyrightpageopens(driver)
-        self.filter_products_by_price_range = filterproductsbypricerange(driver)
-        self.verify_price_inside_range = verifypriceinsiderange(driver)
+        self.log_in_page= LogInPage(driver)
+        self.page_opens = PageOpens(driver)
+        self.filter_products = FilterResultPage(driver)

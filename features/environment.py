@@ -1,9 +1,11 @@
 from selenium import webdriver
-from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.support.wait import WebDriverWait
 from app.application import Application
-from selenium.webdriver.firefox.service import Service as FirefoxService
-from webdriver_manager.firefox import GeckoDriverManager
+from selenium.webdriver.chrome.service import Service
+#from support.logger import logger
+from selenium.webdriver.chrome.options import Options
+from webdriver_manager.chrome import ChromeDriverManager
+
 
 
 def browser_init(context):
@@ -12,9 +14,11 @@ def browser_init(context):
     """
     #context.driver = webdriver.Firefox(service=FirefoxService(GeckoDriverManager().install()))
 
-    service = Service(executable_path='/Users/ahoy/Desktop/QA/python-selenium-automation/')
+    #service = Service(executable_path='/Users/zoonib/Downloads/InternshipProject/chromedriver.exe'
+    # context.driver = webdriver.Chrome(service=service)
+    driver_path = ChromeDriverManager().install()
+    service = Service(driver_path)
     context.driver = webdriver.Chrome(service=service)
-
     context.driver.maximize_window()
 
     context.driver.maximize_window()
