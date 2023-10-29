@@ -22,15 +22,30 @@ def browser_init(context):
     #context.driver = webdriver.Chrome(service=service)
 
     ## HEADLESS MODE ##
-    options = webdriver.ChromeOptions()
-    options.add_argument('--headless')
-    driver_path = ChromeDriverManager().install()
-    service = Service(driver_path)
-    context.driver = webdriver.Chrome(
-        options=options,
-        service=service
-    )
+    #options = webdriver.ChromeOptions()
+    #options.add_argument('--headless')
+    #driver_path = ChromeDriverManager().install()
+    #service = Service(driver_path)
+    #context.driver = webdriver.Chrome(
+      #  options=options,
+      #  service=service
+   # )
 
+    ### BROWSERSTACK ###
+    #Register for BrowserStack, then grab it from https://www.browserstack.com/accounts/settings
+    bs_user = 'zoonibutt_LQMHgj'
+    bs_key = 'mTJJkLGA4xqQaocpYQnQ'
+    url = f'http://{bs_user}:{bs_key}@hub-cloud.browserstack.com/wd/hub'
+
+    options = Options()
+    bstack_options = {
+        'os': 'Windows',
+        'osVersion': '10',
+        'browserName': 'Firefox',
+        'sessionName': 'scenario_name'
+     }
+    options.set_capability('bstack:options', bstack_options)
+    context.driver = webdriver.Remote(command_executor=url, options=options)
 
     context.driver.set_window_size(1920, 1080)
 
