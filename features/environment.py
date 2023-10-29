@@ -8,6 +8,7 @@ from webdriver_manager.chrome import ChromeDriverManager
 
 
 
+
 def browser_init(context):
     """
     :param context: Behave context
@@ -16,10 +17,22 @@ def browser_init(context):
 
     #service = Service(executable_path='/Users/zoonib/Downloads/InternshipProject/chromedriver.exe'
     # context.driver = webdriver.Chrome(service=service)
+    #driver_path = ChromeDriverManager().install()
+    #service = Service(driver_path)
+    #context.driver = webdriver.Chrome(service=service)
+
+    ## HEADLESS MODE ##
+    options = webdriver.ChromeOptions()
+    options.add_argument('--headless')
     driver_path = ChromeDriverManager().install()
     service = Service(driver_path)
-    context.driver = webdriver.Chrome(service=service)
-    context.driver.maximize_window()
+    context.driver = webdriver.Chrome(
+        options=options,
+        service=service
+    )
+
+
+    context.driver.set_window_size(1920, 1080)
 
     context.driver.maximize_window()
     context.driver.implicitly_wait(4)
